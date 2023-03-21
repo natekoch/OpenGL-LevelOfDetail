@@ -163,7 +163,7 @@ void GetPlaneData(std::vector<float>& coords, std::vector<float>& normals){
 //
 // Sets up a sphere with equation x^2+y^2+z^2=1
 //
-    void
+void
 GetSphereData(std::vector<float>& coords, std::vector<float>& normals, int recursionLevel)
 {
     /* int recursionLevel = 3; */
@@ -210,7 +210,6 @@ GetSphereData(std::vector<float>& coords, std::vector<float>& normals, int recur
         }
     }
 }
-
 
 //
 //
@@ -285,7 +284,7 @@ RenderManager::RenderManager()
     glUniform4fv(lcoeloc, 1, &lightcoeff[0]);
 };
 
-    void
+void
 RenderManager::SetView(glm::vec3 &camera, glm::vec3 &origin, glm::vec3 &up)
 { 
     glm::mat4 v = glm::lookAt(
@@ -300,7 +299,7 @@ RenderManager::SetView(glm::vec3 &camera, glm::vec3 &origin, glm::vec3 &up)
     glUniform3fv(ldirloc, 1, &lightdir[0]);
 };
 
-    void
+void
 RenderManager::SetUpWindowAndShaders()
 {
     // start GL context and O/S window using the GLFW helper library
@@ -509,7 +508,6 @@ void RenderManager::SetUpGeometry()
     glEnableVertexAttribArray(1);
 }
 
-
 void DrawPlane(RenderManager &rm){
     glm::mat4 identity(1.0f);
     rm.SetColor(1,1,1);
@@ -523,7 +521,6 @@ void DrawPlane(RenderManager &rm){
     rm.SetColor(1,1,1);
     rm.Render(RenderManager::PLANE, transform);
 }
-
 
 //
 // PART3: main function
@@ -539,7 +536,6 @@ int main()
 
     // Vector that holds all the balls
     std::vector<Ball> balls;
-    //TODO: ADD CODE!
     for (int i = 0; i < numBalls; i++)
     {
         balls.push_back(createNewBall());
@@ -592,8 +588,6 @@ int main()
     return 0;
 }
 
-
-
 void
 UpdateBallPhysics(Ball& ball){
     auto& ball_physics = ball.BP;
@@ -622,12 +616,11 @@ UpdateBallPhysics(Ball& ball){
         }
         ball_physics.hmax = 0.5*ball_physics.vmax*ball_physics.vmax/ball_physics.g;
     } else { // When its done, make a new ball
-        //TODO: ADD CODE!
         ball = createNewBall();
     }
 }
 
-bool
+static bool
 comp(const Ball &x, const Ball &y)
 {
     return x.distToCamera < y.distToCamera;
@@ -636,7 +629,6 @@ comp(const Ball &x, const Ball &y)
 void
 BounceBall(std::vector<Ball> &balls, RenderManager &rm, glm::vec3 camPos)
 {
-    //TODO: ADD CODE! - YOU'LL WANT TO CALL UpdateBallPhysics() here
     Ball *currentBall;
     int currentDist;
     for (int i = 0; i < numBalls; i++)
@@ -668,7 +660,6 @@ BounceBall(std::vector<Ball> &balls, RenderManager &rm, glm::vec3 camPos)
     }
 }
 
-
 Ball
 createNewBall()
 {
@@ -688,7 +679,6 @@ createNewBall()
     
     return newBall;
 }
-
 
 const char *GetVertexShader()
 {
